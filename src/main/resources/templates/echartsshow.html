@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<script>
+    window.onload = function(){
+        var smallImg = document.getElementById("smallImg");//小图
+        alert(smallImg);
+        var bigImg = document.getElementById("bigImg");//大图
+        var smallCursor = document.getElementById("smallCursor");//小可视区域
+        var bigCursor = document.getElementById("bigCursor");//大可视区域
+
+        //根据比例重新计算小可视区的大小
+        //公式：  小放大镜宽度/大放大镜宽度 = 小图宽度/大图宽度
+        smallCursor.style.width = smallCursor.style.height = smallImg.offsetWidth*bigCursor.offsetWidth/800 + "px";
+        //由于小放大镜域会隐藏，因此不能使用offsetWidth属性来计算宽度。
+        //smallCursor的边长
+        diameter = parseInt(smallCursor.style.width);
+        //大小可视区比例
+        var scale = bigCursor.offsetWidth/diameter;
+
+        smallImg.onmousemove = function(evt){
+            var e = evt || event;
+            var disX = e.pageX - smallImg.offsetLeft - diameter/2;
+            var disY = e.pageY - smallImg.offsetTop - diameter/2;
+
+            var leftSide = smallImg.offsetLeft + diameter/2;
+            var topSide = smallImg.offsetTop + diameter/2;
+
+            var rightSide = smallImg.offsetLeft + smallImg.offsetWidth - diameter/2;
+            var downSide = smallImg.offsetTop + smallImg.offsetHeight - diameter/2;
+            if(e.pageX >= leftSide && e.pageX <= rightSide && e.pageY >= topSide && e.pageY <= downSide) {
+                smallCursor.style.display = "block";
+                bigCursor.style.display = "block";
+
+                //小图的位置
+                smallCursor.style.left = disX+ "px";
+                smallCursor.style.top = disY+ "px";
+                //大图的位置
+                bigImg.style.left = -disX*scale+"px";
+                bigImg.style.top = -disY*scale+"px";
+            } else {
+                smallCursor.style.display = "none";
+            }
+        }
+
+    }
+</script>
+<body>
+<div id="bigCursor" style="position: absolute; height:300px; width:300px; left: 350px; top: 10px; background: rgba(200,198,255,0.1); overflow: hidden;">
+    <img id="bigImg" style="position: absolute; left: 0px; top: 0px;"  src="upload/pic.jpg"/>
+</div>
+<div id="smallImg" style="position: absolute; background:url(upload/pic.jpg) center; background-size: cover; top: 100px; left:100px; width:200px; height:200px;">
+    <div id="smallCursor" style="position: absolute; left: 0; top: 0; display:none; width: 40px; height: 40px; background: rgba(200,198,255,0.8);"></div>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="UTF-8" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="css/main.css"/>
+	<link rel="stylesheet" href="css/doc.min.css"/>
+	<style>
+	.tree li {
+        list-style-type: none;
+		cursor:pointer;
+	}
+	</style>
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+            <div><a class="navbar-brand" style="font-size:32px;" href="user.html">众筹平台 - 用户维护</a></div>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li style="padding-top:8px;">
+				<div class="btn-group">
+				  <button type="button" class="btn btn-default btn-success dropdown-toggle" data-toggle="dropdown">
+					<i class="glyphicon glyphicon-user"></i> 张三 <span class="caret"></span>
+				  </button>
+					  <ul class="dropdown-menu" role="menu">
+						<li><a href="#"><i class="glyphicon glyphicon-cog"></i> 个人设置</a></li>
+						<li><a href="#"><i class="glyphicon glyphicon-comment"></i> 消息</a></li>
+						<li class="divider"></li>
+						<li><a href="login.html"><i class="glyphicon glyphicon-off"></i> 退出系统</a></li>
+					  </ul>
+			    </div>
+			</li>
+            <li style="margin-left:10px;padding-top:8px;">
+				<button type="button" class="btn btn-default btn-danger">
+				  <span class="glyphicon glyphicon-question-sign"></span> 帮助
+				</button>
+			</li>
+          </ul>
+          <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="Search..."/>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+			<div class="tree">
+				<ul style="padding-left:0px;" class="list-group">
+					<li class="list-group-item tree-closed" >
+						<a href="main.html"><i class="glyphicon glyphicon-dashboard"></i> 控制面板</a> 
+					</li>
+					<li class="list-group-item">
+						<span><i class="glyphicon glyphicon glyphicon-tasks"></i> 权限管理 <span class="badge" style="float:right">3</span></span> 
+						<ul style="margin-top:10px;">
+							<li style="height:30px;">
+								<a href="user.html" style="color:red;"><i class="glyphicon glyphicon-user"></i> 用户维护</a> 
+							</li>
+							<li style="height:30px;">
+								<a href="role.html"><i class="glyphicon glyphicon-certificate"></i> 角色维护</a> 
+							</li>
+							<li style="height:30px;">
+								<a href="permission.html"><i class="glyphicon glyphicon-lock"></i> 许可维护</a> 
+							</li>
+						</ul>
+					</li>
+					<li class="list-group-item tree-closed">
+						<span><i class="glyphicon glyphicon-ok"></i> 业务审核 <span class="badge" style="float:right">3</span></span> 
+						<ul style="margin-top:10px;display:none;">
+							<li style="height:30px;">
+								<a href="auth_cert.html"><i class="glyphicon glyphicon-check"></i> 实名认证审核</a> 
+							</li>
+							<li style="height:30px;">
+								<a href="auth_adv.html"><i class="glyphicon glyphicon-check"></i> 广告审核</a> 
+							</li>
+							<li style="height:30px;">
+								<a href="auth_project.html"><i class="glyphicon glyphicon-check"></i> 项目审核</a> 
+							</li>
+						</ul>
+					</li>
+					<li class="list-group-item tree-closed">
+						<span><i class="glyphicon glyphicon-th-large"></i> 业务管理 <span class="badge" style="float:right">7</span></span> 
+						<ul style="margin-top:10px;display:none;">
+							<li style="height:30px;">
+								<a href="cert.html"><i class="glyphicon glyphicon-picture"></i> 资质维护</a> 
+							</li>
+							<li style="height:30px;">
+								<a href="type.html"><i class="glyphicon glyphicon-equalizer"></i> 分类管理</a> 
+							</li>
+							<li style="height:30px;">
+								<a href="process.html"><i class="glyphicon glyphicon-random"></i> 流程管理</a> 
+							</li>
+							<li style="height:30px;">
+								<a href="advertisement.html"><i class="glyphicon glyphicon-hdd"></i> 广告管理</a> 
+							</li>
+							<li style="height:30px;">
+								<a href="message.html"><i class="glyphicon glyphicon-comment"></i> 消息模板</a> 
+							</li>
+							<li style="height:30px;">
+								<a href="project_type.html"><i class="glyphicon glyphicon-list"></i> 项目分类</a> 
+							</li>
+							<li style="height:30px;">
+								<a href="tag.html"><i class="glyphicon glyphicon-tags"></i> 项目标签</a> 
+							</li>
+						</ul>
+					</li>
+					<li class="list-group-item tree-closed" >
+						<a href="param.html"><i class="glyphicon glyphicon-list-alt"></i> 参数管理</a> 
+					</li>
+				</ul>
+			</div>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+				<ol class="breadcrumb">
+				  <li><a href="#">首页</a></li>
+				  <li><a href="#">数据列表</a></li>
+				  <li class="active">修改</li>
+				</ol>
+			<div class="panel panel-default">
+              <div class="panel-heading">表单数据<div style="float:right;cursor:pointer;" data-toggle="modal" data-target="#myModal"><i class="glyphicon glyphicon-question-sign"></i></div></div>
+			  <div class="panel-body">
+				<form role="form" th:object="${shiMingOne}" action="shenhe" method="post">
+					<div class="form-group">
+						<label for="exampleInputPassword1">用户id</label>
+						<input type="text" class="form-control" id="exampleInputPassword" th:value="*{id}" readonly="true"/>
+					</div>
+				  <div class="form-group">
+					<label for="exampleInputPassword1">申请类型</label>
+					<input type="text" class="form-control" id="exampleInputPassword1" th:value="*{stype}" readonly="true"/>
+				  </div>
+				  <div class="form-group">
+					<label for="exampleInputPassword1">用户名称</label>
+					<input type="text" class="form-control" id="exampleInputPassword2" th:value="*{truename}" readonly="true"/>
+				  </div>
+					<div class="form-group">
+						<label for="exampleInputPassword1">用户身份证号</label>
+						<input type="text" class="form-control" id="exampleInputPassword3" name="idcard" th:value="*{idcard}" readonly="true"/>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword1">联系方式</label>
+						<input type="text" class="form-control" id="exampleInputPassword4" th:value="*{phonenum}" readonly="true"/>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword1">电子邮件</label>
+						<input type="text" class="form-control" id="exampleInputPassword5" th:value="*{uemail}" readonly="true"/>
+						<p class="help-block label label-warning">请输入合法的邮箱地址, 格式为： xxxx@xxxx.com</p>
+					</div>
+				  <div class="form-group">
+					<label for="exampleInputEmail1">审核状态</label>
+					<input class="form-control" id="exampleInputEmail1" th:value="*{auditstate}" readonly="true"/>
+				  </div>
+					<!--<div id="bigCursor" style="position: absolute; height:300px; width:300px; left: 350px; top: 10px; background: rgba(200,198,255,0.1); overflow: hidden;">
+						<img id="bigImg" style="position: absolute; left: 0px; top: 0px;"  src="upload/pic.jpg"/>
+					</div>
+					<div id="smallImg" style="position: absolute; background:url(upload/pic.jpg) center; background-size: cover; top: 100px; left:100px; width:200px; height:200px;">
+						<div id="smallCursor" style="position: absolute; left: 0; top: 0; display:none; width: 40px; height: 40px; background: rgba(200,198,255,0.8);"></div>
+					</div>-->
+					<label for="exampleInputEmail1">用户图片</label>
+					<!--<div id="smallImg1" >
+						&lt;!&ndash;<img width="150px" height="150px"  th:src="*{img}"/>&ndash;&gt;
+						<img  width="150px" height="150px" th:src="@{${shiMingOne.img}}"/>
+
+					</div>-->
+
+				   <input type="submit" name="fail" id="fouding" class="btn btn-success" value="否定"/>
+				  <!--<button type="button" class="btn btn-danger" onclick="shenhe('*{idcard}')"><i class="glyphicon glyphicon-refresh"></i> 通过</button>-->
+					<input  class="btn btn-success" type="submit" value="通过"/>
+				</form>
+			  </div>
+			</div>
+        </div>
+      </div>
+    </div>
+	<div id="bigCursor" style="position: absolute; height:250px; width:350px; left: 870px; top: 770px; border-radius:100%; overflow:hidden; background: rgba(200,198,255,0.1); overflow: hidden;">
+						<img id="bigImg" style="position: absolute; left: 0px; top: 0px;"  th:src="@{${shiMingOne.img}}"/>
+					</div>
+					<div id="smallImg" style="position: absolute; /* background:url(upload/pic.jpg) center;*/ background-size: cover; top: 780px; left:320px; width:200px; height:200px;">
+						<img  width="200px" height="180px" th:src="@{${shiMingOne.img}}"/>
+						<div id="smallCursor" style="position: absolute; left: 0; top:0; display:none; width: 40px; height: 40px; background: rgba(200,198,255,0.8);"></div>
+					</div>
+    <script src="jquery/jquery-2.1.1.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+	<script src="script/docs.min.js"></script>
+        <script type="text/javascript">
+         /*   $(function () {
+			    $(".list-group-item").click(function(){
+				    if ( $(this).find("ul") ) {
+						$(this).toggleClass("tree-closed");
+						if ( $(this).hasClass("tree-closed") ) {
+							$("ul", this).hide("fast");
+						} else {
+							$("ul", this).show("fast");
+						}
+					}
+				});
+            });*/
+        /* function shenhe(){
+             window.location.href="shenhe";
+		 }*/
+     	$(function(){
+     	    $("#fouding").click(function(){
+     	        var exam=$("#exampleInputPassword5").val();
+     	        alert(exam)
+     	        $.ajax({
+                    url:"shenhefail",
+                    type:"post",
+                    data:{"exam":exam},
+                    dataType:"json",
+                    success:function (r) {
+                        if(r==200){
+                            alert("发送成功")
+                        }else {
+                            alert("发送失败")
+                        }
+                    }
+				});
+			});
+		});
+      /*   function bohui(){
+             alert("no");
+             var exam=$("#exampleInputPassword6").val();
+             $.ajax({
+                 url:"shenhefail",
+                 type:"post",
+                 data:{"exam":exam},
+                 dataType:"json",
+                 success:function (r) {
+                     if(r==200){
+                         alert("发送成功")
+                     }else {
+                         alert("邮箱格式有误，请重新填写发送")
+                     }
+
+                 }
+             });
+
+         }*/
+        </script>
+	<script>
+        window.onload = function(){
+            var smallImg = document.getElementById("smallImg");//小图
+			  //alert(smallImg);
+            var bigImg = document.getElementById("bigImg");//大图
+			//alert(bigImg);
+            var smallCursor = document.getElementById("smallCursor");//小可视区域
+			//alert(smallCursor);
+            var bigCursor = document.getElementById("bigCursor");//大可视区域
+			//alert(bigCursor)
+            //根据比例重新计算小可视区的大小
+            //公式：  小放大镜宽度/大放大镜宽度 = 小图宽度/大图宽度
+            smallCursor.style.width = smallCursor.style.height = smallImg.offsetWidth*bigCursor.offsetWidth/800 + "px";
+            //由于小放大镜域会隐藏，因此不能使用offsetWidth属性来计算宽度。
+            //smallCursor的边长
+            diameter = parseInt(smallCursor.style.width);
+            //大小可视区比例
+            var scale = bigCursor.offsetWidth/diameter;
+
+            smallImg.onmousemove = function(evt){
+                var e = evt || event;
+                var disX = e.pageX - smallImg.offsetLeft - diameter/2;
+                var disY = e.pageY - smallImg.offsetTop - diameter/2;
+
+                var leftSide = smallImg.offsetLeft + diameter/2;
+                var topSide = smallImg.offsetTop + diameter/2;
+
+                var rightSide = smallImg.offsetLeft + smallImg.offsetWidth - diameter/2;
+                var downSide = smallImg.offsetTop + smallImg.offsetHeight - diameter/2;
+                if(e.pageX >= leftSide && e.pageX <= rightSide && e.pageY >= topSide && e.pageY <= downSide) {
+                    smallCursor.style.display = "block";
+                    bigCursor.style.display = "block";
+
+                    //小图的位置
+                    smallCursor.style.left = disX+ "px";
+                    smallCursor.style.top = disY+ "px";
+                    //大图的位置
+                    bigImg.style.left = -disX*scale+"px";
+                    bigImg.style.top = -disY*scale+"px";
+                } else {
+                    smallCursor.style.display = "none";
+                }
+            }
+
+        }
+	</script>
+  </body>
+</html>

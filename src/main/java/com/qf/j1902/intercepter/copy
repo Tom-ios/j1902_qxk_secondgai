@@ -1,0 +1,62 @@
+package com.qf.j1902.interceptor;
+
+import com.qf.j1902.annotation.PassAnnotation;
+import com.qf.j1902.controller.BaseController;
+import com.qf.j1902.pojo.SysPermission;
+import com.qf.j1902.utils.SessionKey;
+import org.springframework.web.method.HandlerMethod;
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.util.List;
+
+/**
+ * Created by jeffrey on 2019/6/5.
+ */
+public class OAthInterceptor implements HandlerInterceptor {
+//    执行业务处理方法前触发
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+//       session无用户信息则用户未登录，请求转向登录页
+        String uri = request.getRequestURI();//获取请求的路径（path）
+        if(handler instanceof HandlerMethod ){//0
+            HandlerMethod method = (HandlerMethod) handler;
+            Object methodBean = method.getBean();//获取将要执行的方法所在的对象
+            if(methodBean instanceof BaseController){//即将访问的方法是BaseController的派生类的方法  //1
+                HttpSession session = request.getSession(true);
+                Object currUser = session.getAttribute(SessionKey.SYS_USER);
+                if(currUser==null){//未登录，禁止继续访问  //2
+                   request.getRequestDispatcher("/loginView").forward(request,response);
+                }else{//已登陆  //end 2
+//                    获取访问方法前的指定注解
+                    PassAnnotation methodAnnotation = method.getMethodAnnotation(PassAnnotation.class);
+                    if(methodAnnotation !=null){//现需要特定权限访问
+//从session中获取权限
+                        List<SysPermission> perms = ( List<SysPermission>)session.getAttribute(SessionKey.CURR_PERMS);
+// 遍历权限列表  看是否有权访问当前方法  uri
+                    }else{//登录即可访问
+
+                    }
+                    return true;
+                }
+
+
+            }//end 1
+        }//end 0
+
+        return true;
+    }
+
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+
+    }
+
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+
+    }
+}

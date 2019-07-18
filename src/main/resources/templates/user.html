@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="UTF-8" xmlns:th="http://www.thymeleaf.org" >
+  <head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="css/main.css"/>
+	<style>
+	.tree li {
+        list-style-type: none;
+		cursor:pointer;
+	}
+	table tbody tr:nth-child(odd){background:#F4F4F4;}
+	table tbody td:nth-child(even){color:#C00;}
+	</style>
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <div><a class="navbar-brand" style="font-size:32px;" href="#">众筹平台 - 用户维护</a></div>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li style="padding-top:8px;">
+				<div class="btn-group">
+				  <button type="button" class="btn btn-default btn-success dropdown-toggle" data-toggle="dropdown" th:text="${other}">
+					<i class="glyphicon glyphicon-user"></i> 张三 <span class="caret"></span>
+				  </button>
+					  <ul class="dropdown-menu" role="menu">
+						<li><a href="#"><i class="glyphicon glyphicon-cog"></i> 个人设置</a></li>
+						<li><a href="#"><i class="glyphicon glyphicon-comment"></i> 消息</a></li>
+						<li class="divider"></li>
+						<li><a href="dengLu"><i class="glyphicon glyphicon-off"></i> 退出系统</a></li>
+					  </ul>
+			    </div>
+			</li>
+            <li style="margin-left:10px;padding-top:8px;">
+				<button type="button" class="btn btn-default btn-danger">
+				  <span class="glyphicon glyphicon-question-sign"></span> 帮助
+				</button>
+			</li>
+          </ul>
+          <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="Search..."/>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+			<div class="tree">
+				<ul style="padding-left:0px;" class="list-group">
+					<li class="list-group-item tree-closed" >
+						<a href="main.html"><i class="glyphicon glyphicon-dashboard"></i> 控制面板</a> 
+					</li>
+					<li class="list-group-item">
+						<span><i class="glyphicon glyphicon glyphicon-tasks"></i> 权限管理 <span class="badge" style="float:right">3</span></span> 
+						<ul style="margin-top:10px;">
+							<li style="height:30px;">
+								<a href="/yongHuWeiHu" style="color:red;"><i class="glyphicon glyphicon-user"></i> 用户维护</a>
+							</li>
+							<li style="height:30px;">
+								<a href="/jiaoSeWeiHu"><i class="glyphicon glyphicon-king"></i> 角色维护</a>
+							</li>
+							<li style="height:30px;">
+								<a href="/xuKeWeiHu"><i class="glyphicon glyphicon-lock"></i> 许可维护</a>
+							</li>
+						</ul>
+					</li>
+					<li class="list-group-item tree-closed">
+						<span><i class="glyphicon glyphicon-ok"></i> 业务审核 <span class="badge" style="float:right">3</span></span> 
+						<ul style="margin-top:10px;display:none;">
+							<li style="height:30px;">
+								<a href="auth_cert.html"><i class="glyphicon glyphicon-check"></i> 实名认证审核</a> 
+							</li>
+							<li style="height:30px;">
+								<a href="auth_adv.html"><i class="glyphicon glyphicon-check"></i> 广告审核</a> 
+							</li>
+							<li style="height:30px;">
+								<a href="auth_project.html"><i class="glyphicon glyphicon-check"></i> 项目审核</a> 
+							</li>
+						</ul>
+					</li>
+					<li class="list-group-item tree-closed">
+						<span><i class="glyphicon glyphicon-th-large"></i> 业务管理 <span class="badge" style="float:right">7</span></span> 
+						<ul style="margin-top:10px;display:none;">
+							<li style="height:30px;">
+								<a href="cert.html"><i class="glyphicon glyphicon-picture"></i> 资质维护</a> 
+							</li>
+							<li style="height:30px;">
+								<a href="type.html"><i class="glyphicon glyphicon-equalizer"></i> 分类管理</a> 
+							</li>
+							<li style="height:30px;">
+								<a href="process.html"><i class="glyphicon glyphicon-random"></i> 流程管理</a> 
+							</li>
+							<li style="height:30px;">
+								<a href="advertisement.html"><i class="glyphicon glyphicon-hdd"></i> 广告管理</a> 
+							</li>
+							<li style="height:30px;">
+								<a href="message.html"><i class="glyphicon glyphicon-comment"></i> 消息模板</a> 
+							</li>
+							<li style="height:30px;">
+								<a href="project_type.html"><i class="glyphicon glyphicon-list"></i> 项目分类</a> 
+							</li>
+							<li style="height:30px;">
+								<a href="tag.html"><i class="glyphicon glyphicon-tags"></i> 项目标签</a> 
+							</li>
+						</ul>
+					</li>
+					<li class="list-group-item tree-closed" >
+						<a href="param.html"><i class="glyphicon glyphicon-list-alt"></i> 参数管理</a> 
+					</li>
+				</ul>
+			</div>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+			<div class="panel panel-default">
+			  <div class="panel-heading">
+				<h3 class="panel-title"><i class="glyphicon glyphicon-th"></i> 数据列表</h3>
+			  </div>
+			  <div class="panel-body">
+<form class="form-inline" action="chaXun" method="post" role="form" style="float:left;">
+  <div class="form-group has-feedback">
+    <div class="input-group">
+      <div class="input-group-addon">查询条件</div>
+      <input class="form-control has-success" type="text" name="name" placeholder="请输入查询条件"/>
+    </div>
+  </div>
+  <!--<button type="button" class="btn btn-warning" ><i class="glyphicon glyphicon-search"></i> 查询</button>-->
+	<input type="submit" class="btn btn-warning"  value="查询"/>
+</form>
+<button type="button" class="btn btn-danger" style="float:right;margin-left:10px;"><i class=" glyphicon glyphicon-remove"></i> 删除</button>
+<button type="button" class="btn btn-primary" style="float:right;" onclick="window.location.href='add'"><i class="glyphicon glyphicon-plus"></i> 新增</button>
+<br/>
+ <hr style="clear:both;"/>
+          <div class="table-responsive">
+            <table class="table  table-bordered" id="test">
+              <thead>
+                <tr >
+                  <th width="30">#</th>
+				  <th width="30"><input type="checkbox"/></th>
+                  <th>账号</th>
+                  <th>名称</th>
+                  <th>邮箱地址</th>
+                  <th width="100">操作</th>
+                </tr>
+              </thead>
+              <tbody>
+			  <tr th:each="user:${all}">
+				  <td th:text="${user.getId()}"></td>
+				  <td><input type="checkbox"/></td>
+				  <td th:text="${user.getName()}"></td>
+				  <td th:text="${user.other}"></td>
+				  <td th:text="${user.getEmail()}"></td>
+				  <td>
+					  <button type="button" class="btn btn-success btn-xs"><i class=" glyphicon glyphicon-check" th:onclick="'javascript:rolefp('+${user.getId()}+')'"></i></button><!--<a href="" onclick="javascript:return del();">删除</a>-->
+					  <button type="button" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-pencil" th:onclick="'javascript:xiugai('+${user.getId()}+')'"></i></button>
+					  <button type="button" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove" th:onclick="'javascript:shanchu('+${user.getId()}+')'"></i></button>
+				  </td>
+			  </tr>
+
+              </tbody>
+			  <tfoot>
+			     <tr >
+				     <td colspan="6" align="center">
+						<ul class="pagination">
+								<li class="disabled"><a href="#">上一页</a></li>
+								<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#">4</a></li>
+								<li><a href="#">5</a></li>
+								<li><a href="#">下一页</a></li>
+							 </ul>
+					 </td>
+				 </tr>
+			  </tfoot>
+            </table>
+			  <input id="Button1" type="button" value="导出EXCEL" onClick="javascript:table2excel('test',
+'自定义excel的Sheet','自定义导出excel信息名称')" style="padding:5px;margin-top:20px;"/>
+          </div>
+			  </div>
+			</div>
+        </div>
+      </div>
+    </div>
+
+    <script src="jquery/jquery-2.1.1.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+	<script src="script/docs.min.js"></script>
+        <script type="text/javascript">
+     		function xiugai(userid) {
+				//alert(userid);
+                window.location.href="edit?id="+userid;
+            }
+           /* function shanchu(userid) {
+                //alert("删除id"+userid);
+               window.location.href="yongHuWeiHu2?id="+userid;
+            }*/
+            function shanchu(userid) {
+                var msg = "您真的确定要删除吗？\n\n请确认！";
+                if (confirm(msg)==true){
+
+                    //return true;
+                    window.location.href="yongHuWeiHu2?id="+userid;
+                }else{
+                    return false;
+                }
+            }
+            function rolefp(userid){
+                alert(userid);
+                window.location.href="assignRole?id="+userid;
+			}
+        </script>
+	<script type="text/javascript" language="javascript">
+        var idTmr;
+        function  getExplorer() {
+            var explorer = window.navigator.userAgent ;
+            //ie
+            if (explorer.indexOf("MSIE") >= 0) {
+                return 'ie';
+            }
+            //firefox
+            else if (explorer.indexOf("Firefox") >= 0) {
+                return 'Firefox';
+            }
+            //Chrome
+            else if(explorer.indexOf("Chrome") >= 0){
+                return 'Chrome';
+            }
+            //Operad
+            else if(explorer.indexOf("Opera") >= 0){
+                return 'Opera';
+            }
+            //Safari
+            else if(explorer.indexOf("Safari") >= 0){
+                return 'Safari';
+            }
+        }
+        function table2excel(tableid,wsname,name) {//整个表格拷贝到EXCEL中
+            if(getExplorer()=='ie')
+            {
+                var curTbl = document.getElementById(tableid);
+                var oXL = new ActiveXObject("Excel.Application");
+
+                //创建AX对象excel
+                var oWB = oXL.Workbooks.Add();
+                //获取workbook对象
+                var xlsheet = oWB.Worksheets(1);
+                //激活当前sheet
+                var sel = document.body.createTextRange();
+                sel.moveToElementText(curTbl);
+                //把表格中的内容移到TextRange中
+                sel.select();
+                //全选TextRange中内容
+                sel.execCommand("Copy");
+                //复制TextRange中内容
+                xlsheet.Paste();
+                //粘贴到活动的EXCEL中
+                oXL.Visible = true;
+                //设置excel可见属性
+
+                try {
+                    var fname = oXL.Application.GetSaveAsFilename("Excel.xls", "Excel Spreadsheets (*.xls), *.xls");
+                } catch (e) {
+                    print("Nested catch caught " + e);
+                } finally {
+                    oWB.SaveAs(fname);
+
+                    oWB.Close(savechanges = false);
+                    //xls.visible = false;
+                    oXL.Quit();
+                    oXL = null;
+                    //结束excel进程，退出完成
+                    //window.setInterval("Cleanup();",1);
+                    idTmr = window.setInterval("Cleanup();", 1);
+
+                }
+            }
+            else
+            {
+                tableToExcel(tableid,wsname,name)
+            }
+        }
+        function Cleanup() {
+            window.clearInterval(idTmr);
+            CollectGarbage();
+        }
+        var tableToExcel = (function() {
+            var uri = 'data:application/vnd.ms-excel;base64,',
+                //格式化导出表格的样式
+                template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel"'+
+                    'xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet>'
+                    +'<x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets>'
+                    +'</x:ExcelWorkbook></xml><![endif]-->'+
+                    ' <style type="text/css">'+
+                    '.excelTable  {'+
+                    'border-collapse:collapse;'+
+                    ' border:thin solid #999; '+
+                    '}'+
+                    '   .excelTable  th {'+
+                    '   border: thin solid #999;'+
+                    '  padding:20px;'+
+                    '  text-align: center;'+
+                    '  border-top: thin solid #999;'+
+                    ' background-color: #E6E6E6;'+
+                    ' }'+
+                    ' .excelTable  td{'+
+                    ' border:thin solid #999;'+
+                    '  padding:2px 5px;'+
+                    '  text-align: center;'+
+                    ' }</style>'+
+                    '</head><body ><table class="excelTable">{table}</table></body></html>',
+                base64 = function(s) { return window.btoa(unescape(encodeURIComponent(s))) },
+                format = function(s, c) {
+                    return s.replace(/{(\w+)}/g,
+                        function(m, p) { return c[p]; }) }
+            //return function(table, name) {
+            return function(table, wsname, name) {
+                if(name.length == 0){name='导出Excel信息';}
+                if (!table.nodeType) table = document.getElementById(table)
+                var ctx = {worksheet: wsname || 'Worksheet', table: table.innerHTML}
+                //window.location.href = uri + base64(format(template, ctx))
+                var downloadLink = document.createElement("A");
+                downloadLink.href = uri + base64(format(template, ctx));
+                downloadLink.download = name + '_' + formatTime(new Date(new Date().getTime()),'yyyy_mm_dd hh:ii:ss')+'.xls';
+                downloadLink.target = '_blank';
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+                document.body.removeChild(downloadLink);
+            }
+        })()
+
+        /**
+         * 扩展String对象,添加查找字符串出现的次数
+         * @param (String) str 要测试的字符串
+         */
+        String.prototype.findCount =function(str){
+            return this.split(str).length - 1;
+        }
+
+        /**
+         * 复制字符串
+         * @param (String) str 要复制的字符串
+         * @param (String) num 要复制的次数
+         * @return (Number) 复制后的字符串
+         */
+        function copy(str , num){
+            var tmp = '';
+            for(var i=0; i<num; i++){
+                tmp += str;
+            }
+            return tmp;
+        }
+
+        /**
+         * 格式化时间字符串，支持Date对象
+         * @param (Number) time 要格式化的时间串，或者是一个Date对象
+         * @param (String) format 格式，如：yyyymmddhhiiss yyyy-mm-dd hh:ii:ss
+         * @return (String) 格式化后的时间串
+         */
+        function formatTime(time /* Number */,format /* String */){
+            var
+                y=format.findCount('y'),
+                m=format.findCount('m'),
+                d=format.findCount('d'),
+                h=format.findCount('h'),
+                i=format.findCount('i'),
+                s=format.findCount('s');
+
+            time=time || '';
+            format = format || '';
+            format = format.toLowerCase();
+            if(time == '') {return time;}
+            if(time.constructor == Date){
+                var tmp='' + time.getFullYear() +
+                    ('00' + (time.getMonth() + 1)).slice(-2) +
+                    ('00' + time.getDate()).slice(-2) +
+                    ('00' + time.getHours()).slice(-2) +
+                    ('00' + time.getMinutes()).slice(-2) +
+                    ('00' + time.getSeconds()).slice(-2);
+                time = tmp;
+            }
+			/*
+			 if(time.length <format.length){
+			 alert('要格式化的时间串与转换格式不一致！');
+			 return false;
+			 }
+			 */
+
+            if(y > 0){
+                format = format.replace(copy('y',y),time.substring(0,4).slice(-y));
+            }
+
+            if(m > 0){
+                format = format.replace(copy('m',m),('00'+time.substring(4,2)).slice(-m));
+            }
+
+            if(d > 0){
+                format = format.replace(copy('d',d),('00'+time.substring(6,2)).slice(-d));
+            }
+
+            if(h > 0){
+                format = format.replace(copy('h',h),('00'+time.substring(8,2)).slice(-h));
+            }
+
+            if(i > 0){
+                format = format.replace(copy('i',i),('00'+time.substring(10,2)).slice(-i));
+            }
+
+            if(s > 0){
+                format = format.replace(copy('s',s),('00'+time.substring(12,2)).slice(-s));
+            }
+
+            return format;
+        }
+	</script>
+  </body>
+</html>

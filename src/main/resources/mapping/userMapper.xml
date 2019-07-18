@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.j1902.mapper.UserMapper">
+    <resultMap id="userMap" type="com.qf.j1902.pojo.User">
+        <id property="id" column="ID"/>
+        <result property="name" column="NAME"/>
+        <result property="password" column="PASSWORD"/>
+        <result property="email" column="email"/>
+        <result property="sort" column="SORT"/>
+        <result property="other" column="other"/>
+        <result property="renzheng" column="renzheng"/>
+    </resultMap>
+    <sql id="user_column">
+        id,
+        name,
+        password,
+        email，
+        sort,
+        other
+    </sql>
+    <select id="findOne" parameterType="com.qf.j1902.pojo.User" resultMap="userMap">
+      SELECT * FROM user WHERE sort=#{sort}
+    </select>
+    <select id="findOneById" parameterType="User" resultMap="userMap">
+    SELECT * FROM user WHERE id=#{id}
+  </select>
+    <select id="findOneByName" parameterType="User" resultMap="userMap">
+        SELECT * FROM user WHERE name=#{name}
+    </select>
+    <insert id="addUser" parameterType="com.qf.j1902.pojo.User">
+      <selectKey resultType="int" keyColumn="ID" keyProperty="id" order="AFTER">
+          SELECT LAST_INSERT_ID()
+      </selectKey>
+      INSERT INTO user (name,password,email,sort,other,renzheng)VALUES (#{name},#{password},#{email},#{sort},#{other},#{renzheng})
+    </insert>
+    <select id="findAll" resultMap="userMap">
+        SELECT
+          *
+         FROM
+         user
+    </select>
+    <update id="upUser" parameterType="com.qf.j1902.pojo.User" >
+        UPDATE user
+        set name=#{name},email=#{email},other=#{other}
+        WHERE  id = #{id}
+    </update>
+    <delete id="delUser" parameterType="int">
+        DELETE  FROM user WHERE id=#{id}
+    </delete>
+    <select id="MoHufind" parameterType="String" resultMap="userMap">
+        select * from user where name like "%"#{string}"%" or other like "%"#{string}"%" or email like "%"#{string}"%"
+    </select>
+    <insert id="addTrueUser" parameterType="com.qf.j1902.pojo.ShIMing">
+
+        INSERT INTO shiming(truename,idcard,phonenum,uemail,stype)VALUES (#{truename},#{idcard},#{phonenum},#{uemail},#{stype})
+    </insert>
+    <insert id="addTrueUser2" parameterType="com.qf.j1902.pojo.ShIMing">
+
+        INSERT INTO shiming(truename,idcard,phonenum,stype)VALUES (#{truename},#{idcard},#{phonenum},#{stype})
+    </insert>
+    <insert id="addTrueUser3" parameterType="com.qf.j1902.pojo.ShIMing">
+        INSERT INTO shiming(uemail)VALUES (#{uemail})
+    </insert>
+    <update id="xiuGai" parameterType="com.qf.j1902.pojo.ShIMing" >
+        UPDATE shiming
+        set Auditstate=#{Auditstate}
+        WHERE  idcard = #{idcard}
+    </update>
+    <update id="xiuGaiImg" parameterType="com.qf.j1902.pojo.ShIMing" >
+        UPDATE shiming
+        set img=#{img}
+        WHERE  idcard = #{idcard}
+    </update>
+    <select id="getAllShiM" resultType="com.qf.j1902.pojo.ShIMing">
+        SELECT * FROM shiming
+    </select>
+    <select id="findShiMingOne" resultType="com.qf.j1902.pojo.ShIMing" parameterType="int">
+        SELECT * from shiming WHERE id=#{id}
+    </select>
+    <update id="xiugaibyidcard" parameterType="com.qf.j1902.pojo.ShIMing" >
+        UPDATE shiming
+        set Auditstate=#{Auditstate}
+        WHERE  idcard = #{idcard}
+    </update>
+    <select id="findmenuName" parameterType="string" resultType="string">
+        SELECT permission FROM userperms WHERE name=#{name}
+    </select>
+    <select id="findAllPerms" resultType="Perms">
+        SELECT * FROM userperms
+    </select>
+    <update id="xiuGaiShiM" parameterType="User">
+        UPDATE user
+        SET renzheng=#{renzheng}
+        WHERE name=#{name}
+    </update>
+    <select id="findNameByID" parameterType="string" resultType="string">
+        SELECT truename FROM shiming WHERE idcard=#{idcard}
+    </select>
+    <select id="findNameByid" parameterType="int" resultType="string">
+        SELECT name FROM userperms where id=#{id}
+    </select>
+    <insert id="xiugaiperm" parameterType="Perms">
+        INSERT INTO userperms VALUES (#{id},#{name},#{permission})
+    </insert>
+    <select id="findOneshimingByidcard" parameterType="string" resultType="com.qf.j1902.pojo.ShIMing">
+        SELECT * FROM shiming WHERE idcard=#{idcard}
+    </select>
+    <select id="findOneshimingBytruename" resultType="com.qf.j1902.pojo.ShIMing" parameterType="String">
+        SELECT * FROM shiming WHERE truename=#{truename}
+    </select>
+    <delete id="delperm" parameterType="int">
+        DELETE FROM userperms WHERE id=#{id}
+    </delete>
+    <delete id="delshiming" parameterType="String">
+        DELETE FROM shiming WHERE idcard=#{idcard}
+    </delete>
+    <update id="xiugaiemail" parameterType="com.qf.j1902.pojo.ShIMing">
+        UPDATE shiming
+        SET uemail=#{uemail}
+        WHERE
+        idcard=#{idcard}
+    </update>
+
+
+
+
+
+
+</mapper>
